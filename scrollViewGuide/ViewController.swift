@@ -28,7 +28,6 @@ class ViewController: UIViewController {
     private func setupStackView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.axis = .vertical
-        contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor).isActive = true
     }
     
     // fillstackview with colors.
