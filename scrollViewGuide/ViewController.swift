@@ -20,7 +20,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(scrollView)
+        setupScrollViewToSuperView()
         scrollView.addSubview(contentView)
+        setupContentViewToScrollView()
+        setupStackView()
         fillStackView()
     }
     
@@ -28,7 +31,6 @@ class ViewController: UIViewController {
     private func setupStackView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.axis = .vertical
-        contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor).isActive = true
     }
     
     // fillstackview with colors.
@@ -44,11 +46,25 @@ class ViewController: UIViewController {
     }
     
     func setupScrollViewToSuperView() {
-        // you can write code here.
+        NSLayoutConstraint.activate([
+            scrollView.frameLayoutGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.frameLayoutGuide.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.frameLayoutGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.frameLayoutGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
     
     func setupContentViewToScrollView() {
-        // you can write code here.
+        NSLayoutConstraint.activate([
+            scrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: contentView.topAnchor),
+            scrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+        
+        scrollView.frameLayoutGuide.widthAnchor.constraint(equalTo: scrollView.contentLayoutGuide.widthAnchor)
+.isActive = true
+
     }
     
     
